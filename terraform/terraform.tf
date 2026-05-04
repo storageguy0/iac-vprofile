@@ -2,7 +2,8 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.25.0"
+#      version = "~> 5.25.0"
+      version = "~> 5.47.0"
     }
 
     random = {
@@ -22,7 +23,8 @@ terraform {
 
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.23.0"
+#      version = "~> 2.23.0"
+      version = "~> 2.31.0"
     }
   }
 
@@ -32,7 +34,9 @@ terraform {
     region = "us-east-1"
   }
 
-  required_version = "~> 1.6.3"
+  # required_version = "~> 1.6.3"
+  # 升级到 2026 年的主流版本
+  required_version = "~> 1.14.0"
 }
 ##
 ##

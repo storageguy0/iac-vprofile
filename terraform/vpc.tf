@@ -1,6 +1,8 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "5.1.2"
+  # version = "5.1.2"
+  # 升级 VPC 模块以支持最新的网络特性
+  version = "~> 5.13.0" 
 
   name = "vprofile-eks"
 
