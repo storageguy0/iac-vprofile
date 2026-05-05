@@ -19,7 +19,7 @@ module "eks" {
   }
 
   managed_node_group_defaults = {
-    ami_type = "AL2_x86_64"   # 👈 改这里（关键）
+    ami_type = "AL2_x86_64"
   }
 
   managed_node_groups = {
