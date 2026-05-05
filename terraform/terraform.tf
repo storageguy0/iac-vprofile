@@ -36,7 +36,7 @@ terraform {
 
   # required_version = "~> 1.6.3"
   # 升级到 2026 年的主流版本
-  required_version = "~> 1.14.0"
+  required_version = "~> 1.15.0"
 }
 ##
 ##

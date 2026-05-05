@@ -14,12 +14,12 @@ module "eks" {
 
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets
-  cluster_endpoint_public_access = true
+  endpoint_public_access = true
 
   # 2026 年的新标准：直接通过 Access Entry 授权创建者管理员权限
   enable_cluster_creator_admin_permissions = true
 
-  eks_managed_node_group_defaults = {
+  managed_node_group_defaults = {
   #  ami_type = "AL2_x86_64"
   # 升级到 Amazon Linux 2023
     ami_type = "AL2023_x86_64" 
