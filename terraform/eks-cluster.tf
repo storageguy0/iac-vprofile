@@ -1,31 +1,25 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  # version = "19.19.1"
-  # 升级到最新大版本
-  version = "~> 21.0" 
+  version = "~> 21.19.0" # 锁定到报错日志中显示的当前版本
 
-
-  # cluster_name    = local.cluster_name
-  # v21 中 cluster_name 简化为 name
-  name               = local.cluster_name               
-  # cluster_version = "1.27"
-  # 使用 2026 年的主流版本
+  name               = local.cluster_name
   kubernetes_version = "1.34"
 
-  vpc_id                         = module.vpc.vpc_id
-  subnet_ids                     = module.vpc.private_subnets
-  endpoint_public_access = true
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnets
 
-  # 2026 年的新标准：直接通过 Access Entry 授权创建者管理员权限
+  # 1. 控制平面访问 (v21 依然保留了这个参数名)
+  cluster_endpoint_public_access = true
+
+  # 2. 权限管理
   enable_cluster_creator_admin_permissions = true
 
+  # 3. 托管节点组默认配置 (确认为 managed_node_group_defaults)
   managed_node_group_defaults = {
-  #  ami_type = "AL2_x86_64"
-  # 升级到 Amazon Linux 2023
-    ami_type = "AL2023_x86_64" 
+    ami_type = "AL2023_x86_64"
   }
 
-  eks_managed_node_groups = {
+  managed_node_groups = {
     one = {
       name = "node-group-1"
 
